@@ -28,6 +28,17 @@ public class Shoot : MonoBehaviour
         {
             shootContin = true;
         }
+        else if (Input.touchCount > 0)
+        {
+            //touch detected
+            Touch touch = Input.GetTouch(0);
+
+            //check if tap, not hold
+            if (touch.phase == TouchPhase.Began)
+            {
+                shootContin = true;
+            }
+        }
         else
         {
             shootContin = false;

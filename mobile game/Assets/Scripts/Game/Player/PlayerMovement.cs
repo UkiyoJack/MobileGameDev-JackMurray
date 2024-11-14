@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{
+{ 
     [SerializeField]
     private float speed = 5f ;
 
@@ -16,14 +16,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 smoothedVelocity;
 
 
-    private void Awake()
+    private void Awake() 
     {
         rigidBody2d = GetComponent<Rigidbody2D>();
 
-        if (SystemInfo.supportsGyroscope )
+        if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;      //enable gyroscope if device has support
         }
+        
     }
 
     private void FixedUpdate()
@@ -40,6 +41,13 @@ public class PlayerMovement : MonoBehaviour
             /*gyroMovement(tilt); //call gyro movement method
             gyroRotation(tilt); //call gyro */
 
+            SetPlayerVelocity();
+            RotateInDirectionOfInput();
+        }
+        else
+        {
+            // WASD input for debugging (desktop)
+            movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             SetPlayerVelocity();
             RotateInDirectionOfInput();
         }
