@@ -9,21 +9,23 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float rotationSpeed = 200f;
-
+   
     private Rigidbody2D rigidBody2d;
     private Vector2 movementInput;
     private Vector2 smoothedMovementinput;
     private Vector2 smoothedVelocity;
 
 
+    bool isAlive = true;
+
     private void Awake() 
     {
         rigidBody2d = GetComponent<Rigidbody2D>();
 
-        if (SystemInfo.supportsGyroscope)
-        {
-            Input.gyro.enabled = true;      //enable gyroscope if device has support
-        }
+        //if (SystemInfo.supportsGyroscope)
+        //{
+        //    Input.gyro.enabled = true;      //enable gyroscope if device has support
+        //}
         
     }
 
@@ -32,15 +34,22 @@ public class PlayerMovement : MonoBehaviour
         /*SetPlayerVelocity();
         RotateInDirectionOfInput();*/
 
-        if (SystemInfo.supportsGyroscope)
+        if (Input.touchCount> 0) //touch input for mobile
         {
-            Vector2 tilt = Input.gyro.gravity; //get gyro grav data
+            Touch touch = Input.GetTouch(0);
 
-            movementInput = new Vector2(tilt.x, tilt.y);
+            //get touch pos in world coords
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPos.z = 0; //Z axis is 0 as 2D game
 
-            /*gyroMovement(tilt); //call gyro movement method
-            gyroRotation(tilt); //call gyro */
+            //calc direction from player to touch pos
+            Vector2 dir = (touchPos - transform.position).normalized;
 
+            if (touch.phase ==TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            {
+                //move in touch direction (while touch is continuous)
+                movementInput = dir;
+            } 
             SetPlayerVelocity();
             RotateInDirectionOfInput();
         }
@@ -81,4 +90,11 @@ public class PlayerMovement : MonoBehaviour
         movementInput = inputvalue.Get<Vector2>();
 
     }*/
+    private void PlayerDeath()
+    {
+        if(isAlive == false)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

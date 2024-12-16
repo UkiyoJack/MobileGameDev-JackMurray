@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 public class Bubble : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class Bubble : MonoBehaviour
             Destroy(collision.gameObject);  //destroy enemy fish
             Destroy(gameObject);    //destroy bubble
 
+
             score.scoreCalculator();
+
+            HapticFeedback.HeavyFeedback(); //heavy haptic feedback on collision
+            
 
         }
     }

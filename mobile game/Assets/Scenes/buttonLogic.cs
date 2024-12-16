@@ -5,12 +5,22 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class buttonLogic : MonoBehaviour
 {
     public TextMeshProUGUI buttontext;
 
+    private void Start()
+    {
+        Button button = GetComponent<Button>();
+        if (button != null)
+        {
+            //add sceneswitcher to buttons onclick event
+            button.onClick.AddListener(sceneSwitcher);
+        }
+    }
     public void sceneSwitcher()
     {
 

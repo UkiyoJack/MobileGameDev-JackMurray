@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CandyCoded.HapticFeedback;
 using UnityEngine;
 /*using UnityEngine.InputSystem;*/
 
@@ -70,11 +71,8 @@ public class Shoot : MonoBehaviour
         Rigidbody2D rigidbody = bubble.GetComponent<Rigidbody2D>();
 
         rigidbody.velocity = bubbleSpeed * transform.up;
+
+        HapticFeedback.LightFeedback(); //light haptics for shots
     }
 
-    /*private void OnFire(InputValue inputValue)
-    {
-        shootContin = inputValue.isPressed;
-
-    }*/
 }

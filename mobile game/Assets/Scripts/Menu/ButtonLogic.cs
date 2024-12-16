@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class buttonLogic : MonoBehaviour
+public class ButtonLogic : MonoBehaviour
 {
     public TextMeshProUGUI buttontext;
 
