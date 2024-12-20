@@ -15,9 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 smoothedMovementinput;
     private Vector2 smoothedVelocity;
 
-
-    bool isAlive = true;
-
     private void Awake() 
     {
         rigidBody2d = GetComponent<Rigidbody2D>();
@@ -90,11 +87,5 @@ public class PlayerMovement : MonoBehaviour
         movementInput = inputvalue.Get<Vector2>();
 
     }*/
-    private void PlayerDeath()
-    {
-        if(isAlive == false)
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 }
