@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class DeathMechanics : MonoBehaviour
 {
-    bool isAlive = true;
+    public bool isAlive = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +23,8 @@ public class DeathMechanics : MonoBehaviour
 
             //HapticFeedback.HeavyFeedback(); //heavy haptic feedback on collision
             Destroy(gameObject);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
         }
     }
 }

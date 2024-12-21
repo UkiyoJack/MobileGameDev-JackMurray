@@ -103,6 +103,6 @@ public class BannerAdExample : MonoBehaviour
         // Clean up the listeners:
         _loadBannerButton.onClick.RemoveAllListeners();
         _showBannerButton.onClick.RemoveAllListeners();
-        _hideBannerButton.onClick.RemoveAllListeners();
+        _hideBannerButton.onClick.RemoveAllListeners(); 
     }
 }

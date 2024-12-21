@@ -64,4 +64,9 @@ public class enemyMovement : MonoBehaviour
             rb.velocity = transform.up * speed;
         }
     }
+    public void IncreaseSpeed(float speedIncrease) //speed increaser (for difficulty.cs script)
+    {
+        speed += speedIncrease;
+         
+    }
 }

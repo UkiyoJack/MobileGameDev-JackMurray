@@ -18,14 +18,35 @@ public class buttonLogic : MonoBehaviour
         if (button != null)
         {
             //add sceneswitcher to buttons onclick event
-            button.onClick.AddListener(sceneSwitcher);
+            button.onClick.AddListener(StartButton);
         }
     }
-    public void sceneSwitcher()
+    public void StartButton()
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 
+    public void SettingsButton()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+
+    }
+
+    public void BackButton()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + - 2);
+
+    }
+
+    public void ExitButton()
+    {
+
+        Application.Quit();
+        Debug.Log("QUIT APP!");
+
+    }
 }
