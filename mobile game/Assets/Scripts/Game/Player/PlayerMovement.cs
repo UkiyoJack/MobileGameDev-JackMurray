@@ -15,15 +15,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 smoothedMovementinput;
     private Vector2 smoothedVelocity;
 
+    
+
+    Animator animator;
     private void Awake() 
     {
         rigidBody2d = GetComponent<Rigidbody2D>();
+
+        animator = GetComponentInChildren<Animator>();
 
         //if (SystemInfo.supportsGyroscope)
         //{
         //    Input.gyro.enabled = true;      //enable gyroscope if device has support
         //}
-        
+
     }
 
     private void FixedUpdate()
@@ -46,9 +51,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 //move in touch direction (while touch is continuous)
                 movementInput = dir;
+                
+                animator.SetBool("isMoving", true);
             } 
             SetPlayerVelocity();
             RotateInDirectionOfInput();
+            animator.SetBool("isMoving", movementInput != Vector2.zero); //if movementInput isnt ZERO, update transition in animation. (handles both true and false conditions)
         }
         else
         {
@@ -56,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             SetPlayerVelocity();
             RotateInDirectionOfInput();
+            animator.SetBool("isMoving", movementInput != Vector2.zero);
         }
     }
 
