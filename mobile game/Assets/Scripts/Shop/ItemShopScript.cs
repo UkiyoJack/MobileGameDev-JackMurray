@@ -7,6 +7,9 @@ public class ItemShopScript : MonoBehaviour
 {
     public shopScript shopscript;
     public List<shopItem> shopItems = new List<shopItem>();
+    public bool speedBoostActive = false;
+    public float currentSpeedBoost = 0;
+    /*public PlayerMovement playerMovementScript;*/
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +30,21 @@ public class ItemShopScript : MonoBehaviour
             updateCoinText(); //update ui with new value
 
             Debug.Log($"purchased {item.itemName} for {item.cost}!!");
+
+            // If this item grants a speed boost, activate the speed boost
+            if (item.itemName == "speedboost")
+            {
+                // Retrieve the current speed from PlayerPrefs (default to 5 if not set)
+                float currentSpeed = PlayerPrefs.GetFloat("playerSpeed", 5f);
+
+                // Add the speed boost amount (e.g., 2) to the current speed
+                float newSpeed = currentSpeed + item.speedBoostAmount;
+                PlayerPrefs.SetFloat("playerSpeed", newSpeed);
+                PlayerPrefs.Save();
+                Debug.Log($"Speed boost applied. New speed: {newSpeed}");
+            }
         }
+
         else
         {
             Debug.Log("Insufficient Coins D:");
@@ -38,10 +55,25 @@ public class ItemShopScript : MonoBehaviour
         shopscript.coinTxt.text = shopscript.coins.ToString();//uipdate coin text
 
     }
+    /*void ApplySpeedBoost(float boostAmount)
+    {
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.ApplySpeedBoost(boostAmount);
+        }
+        else
+        {
+            Debug.LogWarning("Player movement script not assigned!");
+        }
+    }*/
 }
+
 [Serializable]
 public class shopItem
 {
     public string itemName;
     public int cost;
+    public bool effect; //effect?
+    public float speedBoostAmount; //effect multiplier
+
 }

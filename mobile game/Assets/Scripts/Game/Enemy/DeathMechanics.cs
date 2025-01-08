@@ -24,7 +24,7 @@ public class DeathMechanics : MonoBehaviour
             //HapticFeedback.HeavyFeedback(); //heavy haptic feedback on collision
             Destroy(gameObject);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
         }
     }
 }

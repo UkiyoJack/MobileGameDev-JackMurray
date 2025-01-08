@@ -38,10 +38,23 @@ public class buttonLogic : MonoBehaviour
     public void BackButton()
     {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
 
     }
 
+    public void MenuButton()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
+
+    }
+
+    public void BackButton2()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+
+    }
     public void ExitButton()
     {
 
