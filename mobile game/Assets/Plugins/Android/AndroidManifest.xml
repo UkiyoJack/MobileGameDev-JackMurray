@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.unity3d.player"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application>
+        <meta-data
+            android:name="com.unity3d.ads.APPLICATION_ID"
+            android:value="5752939" />
+
+        <meta-data
+            android:name="com.unity3d.services.store.StoreService"
+            android:value="enabled" />
+
+        <service android:name="com.unity3d.services.ads.adunit.AdUnitService" android:exported="true"/>
+
+        <activity android:name="com.unity3d.ads.adunit.AdUnitActivity"
+                  android:label="Unity Ads"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:hardwareAccelerated="true"
+                  android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity android:name="com.unity3d.player.UnityPlayerActivity"
+                  android:theme="@style/UnityThemeSelector">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+        </activity>
+
+    </application>
+</manifest>
