@@ -81,7 +81,7 @@ public class shopScript : MonoBehaviour, IDetailedStoreListener
         }
         else if (product.definition.id == nonConsItem.Id) 
         {
-            //RemoveAds();
+            
         }
          
         return PurchaseProcessingResult.Complete;

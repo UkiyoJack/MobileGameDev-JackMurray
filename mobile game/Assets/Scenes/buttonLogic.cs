@@ -63,6 +63,15 @@ public class buttonLogic : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
         HapticFeedback.LightFeedback();
     }
+    public void ResetButton()
+    {
+
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save(); // Save to ensure data is cleared
+        Debug.Log("PlayerPrefs reset!");
+
+        HapticFeedback.HeavyFeedback();
+    }
 
     public void ExitButton()
     {
