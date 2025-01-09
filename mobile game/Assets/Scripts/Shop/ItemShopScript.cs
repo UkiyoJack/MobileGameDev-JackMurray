@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Core;
 using UnityEngine;
 
 public class ItemShopScript : MonoBehaviour
@@ -11,8 +12,20 @@ public class ItemShopScript : MonoBehaviour
     public float currentSpeedBoost = 0;
     /*public PlayerMovement playerMovementScript;*/
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
+
+        try
+        {
+            // Initialize Unity Gaming Services
+            await UnityServices.InitializeAsync();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError("an error occured during initialization");
+        }
+
+
         updateCoinText(); //get ui 
 
     }

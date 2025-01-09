@@ -24,7 +24,6 @@ Library: F:\UNI WORK_\YEAR3\MobileGameDev - github\MobileGameDev-JackMurray\mobi
 --assembly-defines=Unity.2D.PixelPerfect;
 --assembly-defines=Unity.TextMeshPro;
 --assembly-defines=Unity.Services.Core.Analytics;
---assembly-defines=Unity.LevelPlay;
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.Services.Core.Internal;
 --assembly-defines=Unity.Services.Core.Device;

@@ -35,7 +35,9 @@ public class BannerAdExample : MonoBehaviour
         /*//call load banner when clicked
         _loadBannerButton.onClick.AddListener(LoadBanner);
         _loadBannerButton.interactable = true;*/
-        LoadBanner();
+
+        AdsInitializer.OnAdsInitialized += OnAdsInitialized; //subscribe to ads init event
+        
 
 
     }
@@ -60,15 +62,16 @@ public class BannerAdExample : MonoBehaviour
     {
         Debug.Log("Banner loaded");
 
+
         /*// Configure the Show Banner button to call the ShowBannerAd() method when clicked:
         _showBannerButton.onClick.AddListener(ShowBannerAd);
         // Configure the Hide Banner button to call the HideBannerAd() method when clicked:
         _hideBannerButton.onClick.AddListener(HideBannerAd);*/
 
-       /* // Enable both buttons:
-        _showBannerButton.interactable = true;
-        _hideBannerButton.interactable = true;
-*/
+        /* // Enable both buttons:
+         _showBannerButton.interactable = true;
+         _hideBannerButton.interactable = true;
+ */
         ShowBannerAd();
     }
 
@@ -77,6 +80,14 @@ public class BannerAdExample : MonoBehaviour
     {
         Debug.Log($"Banner Error: {message}");
         // Optionally execute additional code, such as attempting to load another ad.
+    }
+
+    private void OnAdsInitialized()
+    {
+        Debug.Log("Ads initialized in BannerAdExample");
+
+        // Load and show the banner after ads are initialized
+        LoadBanner();
     }
 
     // Implement a method to call when the Show Banner button is clicked:

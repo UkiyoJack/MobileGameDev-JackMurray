@@ -217,15 +217,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.services.levelplay": {
-      "version": "8.5.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.services.core": "1.8.1"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.sysroot": {
       "version": "2.0.10",
       "depth": 1,

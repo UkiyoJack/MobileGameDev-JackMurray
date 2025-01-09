@@ -5,6 +5,7 @@ using TMPro;
 /*using UnityEditor.PackageManager;*/
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.Purchasing.Extension;
 
 [Serializable]
 public class ConsumableItem
@@ -22,7 +23,7 @@ public class NonConsumableItem
     public string Desc;
     public float price;
 }
-public class shopScript : MonoBehaviour, IStoreListener
+public class shopScript : MonoBehaviour, IDetailedStoreListener
 {
     IStoreController storeController;
     public ConsumableItem consItem;
@@ -102,13 +103,17 @@ public class shopScript : MonoBehaviour, IStoreListener
         throw new NotImplementedException();
     }
 
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason error, string message)
+    /*public void OnPurchaseFailed(Product product, PurchaseFailureReason error, string message)
     {
-        
-    }
+
+    }*/
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
 
+    }
+    public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
+    {
+        Debug.LogError($"Purchase failed: {failureDescription.productId}, reason: {failureDescription.reason}, message: {failureDescription.message}");
     }
 
 }
