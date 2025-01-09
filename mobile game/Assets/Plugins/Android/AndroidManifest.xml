@@ -2,8 +2,6 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <application>
         <meta-data
             android:name="com.unity3d.ads.APPLICATION_ID"
