@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
+using Unity.Services.Core;
 
 [Serializable]
 public class ConsumableItem
@@ -34,8 +35,20 @@ public class shopScript : MonoBehaviour, IDetailedStoreListener
     public int coins;
 
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
+
+        try
+        {
+            // Initialize Unity Gaming Services
+            await UnityServices.InitializeAsync();
+            Debug.Log("Unity Gaming Services initialized successfully.");
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError("Failed to initialize Unity Gaming Services: " + exception.Message);
+        }
+
         coins = PlayerPrefs.GetInt("totalCoins", 0);
         coinTxt.text = coins.ToString();
         SetupBuilder();
@@ -65,7 +78,9 @@ public class shopScript : MonoBehaviour, IDetailedStoreListener
     public void ConsumablePressed()
     {
         /*AddCoins(50);*/
+
         storeController.InitiatePurchase(consItem.Id);
+        Debug.Log("purchased item!");
     }
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent) //process the purchase
     {
@@ -78,6 +93,7 @@ public class shopScript : MonoBehaviour, IDetailedStoreListener
         if (product.definition.id == consItem.Id)
         {
             AddCoins(100);
+            Debug.Log("Coins added after purchase.");
         }
         else if (product.definition.id == nonConsItem.Id) 
         {
@@ -90,7 +106,7 @@ public class shopScript : MonoBehaviour, IDetailedStoreListener
     {
         /*removeads*/
         
-        storeController.InitiatePurchase(nonConsItem.Id);
+        storeController.InitiatePurchase(consItem.Id);
     }
     //istorelistener callbacks
     public void OnInitializeFailed(InitializationFailureReason error)
